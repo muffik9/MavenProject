@@ -1,9 +1,23 @@
-node('jenkins-maven') {
-     stage('Running Maven') {
-        sh(script: """
-           echo "hello world"
-           mvn --version
-           docker run -it --rm --name my-test -v /mnt/data -w /usr/src/mymaven maven:3.3-jdk-8 mvn clean install
-        """)
-     }
+pipeline {
+  agent any
+
+  tools {
+    jdk 'jdk-11'
+    maven 'mvn-3.6.3'
+  }
+
+  stages {
+    stage('Build') {
+      steps {
+        withMaven(maven : 'mvn-3.6.3') {
+          sh "mvn package"
+        }
+      }
+    }
+
+    stage('Test') {
+      steps {
+        sh echo "the second stage"
+      }
+    }
 }
