@@ -20,4 +20,5 @@ pipeline {
         sh echo "the second stage"
       }
     }
+  }
 }
