@@ -4,6 +4,7 @@ pipeline {
   tools {
     jdk 'jdk-11'
     maven 'mvn-3.6.3'
+    sonarqube 'sonarqube-4.7.0.2747'
   }
 
   stages {
@@ -17,7 +18,9 @@ pipeline {
 
     stage('Test') {
       steps {
-        echo "the second stage"
+        withMaven(maven : 'mvn-3.6.3') {
+	  sh "mvn sonar:sonar -Dsonar.login=myAuthenticationToken"
+        }
       }
     }
   }
