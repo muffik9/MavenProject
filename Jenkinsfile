@@ -4,22 +4,26 @@ pipeline {
   tools {
     jdk 'jdk-11'
     maven 'mvn-3.6.3'
-    sonarqube 'sonarqube-4.7.0.2747'
   }
-
+  environment {
+    SONAR_HOME = "${tool name: 'sonar-scanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'}"
+  }
   stages {
     stage('Build') {
       steps {
         withMaven(maven : 'mvn-3.6.3') {
-          sh "mvn package"
+          sh "mvn clean install package"
         }
       }
     }
 
-    stage('Test') {
+    stage('SonarQube Analysis') {
       steps {
-        withMaven(maven : 'mvn-3.6.3') {
-	  sh "mvn sonar:sonar -Dsonar.login=myAuthenticationToken"
+	script {
+	  scannerHome = tool 'sonar-scanner'
+	  }
+	withSonarQubeEnv('sonar') {
+	  sh """${scannerHome}/bin/sonar-scanner"""
         }
       }
     }
