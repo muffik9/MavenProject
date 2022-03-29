@@ -49,8 +49,11 @@ pipeline {
             repository: 'nexus_test_repo',
             credentialsId: 'Nexus_Access',
             artifacts: [
-              [artifactId: "${artifactId}", classifier: '', file: "target/${artifactId}-${version}.jar", type: 'jar'],
-              [artifactId: "${artifactId}", classifier: '', file: 'pom.xml', type: 'pom']
+              [artifactId: "${artifactId}", classifier: '', file: "target/${artifactId}-${version}.pom", type: 'pom'],
+              [artifactId: 'server', classifier: '', file: "target/server-1.0-SNAPSHOT.pom", type: 'pom'],
+              [artifactId: 'server', classifier: '', file: "target/server-1.0-SNAPHOT.jar", type: 'jar'],
+              [artifactId: 'webapp', classifier: '', file: "target/webapp-1.0-SNAPSHOT.pom", type: 'pom'],
+              [artifactId: 'webapp', classifier: '', file: "target/webapp-1.0-SNAPSHOT.war", type: 'war']
             ]
           )
         }
