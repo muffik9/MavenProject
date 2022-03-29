@@ -49,8 +49,8 @@ pipeline {
             repository: 'nexus_test_repo',
             credentialsID: 'Nexus_Access',
             artifacts: [
-              [artifactId: "${artifactId}, classifier: '', file: "target/${artifactId}-${version}.jar", type: 'jar'],
-              [artifactId: "${artifactId}, classifier: '', file: 'pom.xml', type: 'pom']
+              [artifactId: "${artifactId}", classifier: '', file: "target/${artifactId}-${version}.jar", type: 'jar'],
+              [artifactId: "${artifactId}", classifier: '', file: 'pom.xml', type: 'pom']
             ]
           )
         }
