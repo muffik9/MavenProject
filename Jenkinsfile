@@ -39,7 +39,7 @@ pipeline {
           version = readMavenPom().getVersion()
           groupId = readMavenPom().getGroupId()
           
-          echo "*** File: ${artifactId}, ${version}, ${groupID}"
+          echo "*** File: ${artifactId}, ${version}, ${groupId}"
           nexusArtifactUploader (
             nexusVersion: 'nexus3',
             protocol: 'http',
