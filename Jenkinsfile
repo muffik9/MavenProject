@@ -44,8 +44,8 @@ pipeline {
             nexusVersion: 'nexus3',
             protocol: 'http',
             nexusUrl: '10.152.183.96:8081',
-            groupId: "${groupId},
-            version: "${version},
+            groupId: "${groupId}",
+            version: "${version}",
             repository: 'nexus_test_repo',
             credentialsID: 'Nexus_Access',
             artifacts: [
