@@ -35,7 +35,7 @@ pipeline {
     stage('Push to Nexus OSS') {
       steps {
         script {
-          artifactId = readMavenPom().getArtifactid()
+          artifactId = readMavenPom().getArtifactId()
           version = readMavenPom().getVersion()
           groupId = readMavenPom().getGroupId()
           
