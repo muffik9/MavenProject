@@ -49,9 +49,8 @@ pipeline {
             repository: 'nexus_test_repo',
             credentialsId: 'Nexus_Access',
             artifacts: [
-              [artifactId: "${artifactId}", classifier: '', file: "target/*.pom", type: 'pom'],
-              [artifactId: 'server', classifier: '', file: "target/*.jar", type: 'jar'],
-              [artifactId: 'webapp', classifier: '', file: "target/*.war", type: 'war']
+              [artifactId: 'server', classifier: '', file: "server/target/*.jar", type: 'jar'],
+              [artifactId: 'webapp', classifier: '', file: "webapp/target/*.war", type: 'war']
             ]
           )
         }
