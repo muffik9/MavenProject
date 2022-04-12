@@ -35,8 +35,9 @@ pipeline {
     stage('maven gets info') {
       steps {
         script {
-          project.groupId = readMavenPom().getProjectGroupId()
-          sh """ mvn -q exec:exec -Dexec.executable='echo' -Dexec.args='${project.groupId}/${project.artifactId}/${project.version}/${project.build.finalName}.${project.packaging}' """
+          filesByGlob = findFiles(glob: "target/*.${pom.packaging}")
+          echo "${filesByGlob[0].name} ${filesByGlob[0].path} ${filesByGlob[0].directory} ${filesByGlob[0].length} ${filesByGlob[0].lastModified}"
+          echo "spacer"
           }
         }
       }
