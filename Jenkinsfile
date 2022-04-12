@@ -10,7 +10,7 @@ pipeline {
     NEXUS_VERSION = "nexus3"
     NEXUS_PROTOCOL = "http"
     NEXUS_URL = "10.152.183.96:8081"
-    NEXUS_REPOSITORY = "nexus_test_repo"
+    NEXUS_REPOSITORY = "nexus_test"
     NEXUS_CREDENTIAl_ID = "Nexus_Access"
   }
   stages {
@@ -50,7 +50,7 @@ pipeline {
             nexusUrl: '10.152.183.96:8081',
             groupId: "${groupId}",
             version: "${version}",
-            repository: 'nexus_test_repo',
+            repository: 'nexus_test',
             credentialsId: 'Nexus_Access',
             artifacts: [
               [artifactId: pom.artifactId,
