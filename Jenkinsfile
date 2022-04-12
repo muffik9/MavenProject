@@ -35,14 +35,14 @@ pipeline {
     stage('Push to Nexus OSS') {
       steps {
         script {
+          sh """ mvn -q exec:exec -Dexec.executable='echo' -Dexec.args='${settings.localRepository}/${project.groupId}/${project.artifactId}/${project.version}/${project.build.finalName}.${project.packaging}' """
           pom = readMavenPom file: "pom.xml"
           filesByGlob = findFiles(glob: "target/*.${pom.packaging}")
-          artifactPath = readMavenPom().getArtifactPath()
           artifactId = readMavenPom().getArtifactId()
           version = readMavenPom().getVersion()
           groupId = readMavenPom().getGroupId()
           
-          echo "*** File: ${artifactId}, ${version}, ${groupId}, ${artifactPath}, ${pom.packaging}"
+          echo "*** File: ${artifactId}, ${version}, ${groupId}, ${pom.packaging}"
           nexusArtifactUploader (
             nexusVersion: 'nexus3',
             protocol: 'http',
