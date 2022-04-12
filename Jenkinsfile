@@ -37,6 +37,7 @@ pipeline {
         script {
           pom = readMavenPom file: "pom.xml"
           filesByGlob = findFiles(glob: "target/*.${pom.packaging}")
+          artifactPath = readMavenPom().getArtifactPath()
           artifactId = readMavenPom().getArtifactId()
           version = readMavenPom().getVersion()
           groupId = readMavenPom().getGroupId()
