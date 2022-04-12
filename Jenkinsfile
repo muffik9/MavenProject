@@ -38,7 +38,7 @@ pipeline {
           pom = readMavenPom file: "pom.xml"
           filesByGlob = findFiles(glob: "target/*.${pom.packaging}")
           artifactPath = filesByGlob[0].path
-          artifactExists = fileExists artifactPath
+          # artifactExists = fileExists artifactPath
           artifactId = readMavenPom().getArtifactId()
           version = readMavenPom().getVersion()
           groupId = readMavenPom().getGroupId()
