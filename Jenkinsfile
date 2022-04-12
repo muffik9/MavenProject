@@ -34,10 +34,12 @@ pipeline {
     }
     stage('maven gets info') {
       steps {
+        script {
           pom = readMavenPom file: "pom.xml"
-          def filesByGlob = findFiles(glob: 'target/*')
+          filesByGlob = findFiles('target/*')
           echo """${filesByGlob[0].name} ${filesByGlob[0].path} ${filesByGlob[0].directory} ${filesByGlob[0].length} ${filesByGlob[0].lastModified}"""
           echo "spacer"
+          }
         }
       }
     stage('Push to Nexus OSS') {
