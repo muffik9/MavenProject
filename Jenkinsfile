@@ -35,7 +35,7 @@ pipeline {
     stage('Push to Nexus OSS') {
       steps {
         script {
-          sh """ mvn -q exec:exec -Dexec.executable='echo' -Dexec.args='${settings.localRepository}/${project.groupId}/${project.artifactId}/${project.version}/${project.build.finalName}.${project.packaging}' """
+          sh """ mvn -q exec:exec -Dexec.executable='echo' -Dexec.args='${project.groupId}/${project.artifactId}/${project.version}/${project.build.finalName}.${project.packaging}' """
           pom = readMavenPom file: "pom.xml"
           filesByGlob = findFiles(glob: "target/*.${pom.packaging}")
           artifactId = readMavenPom().getArtifactId()
