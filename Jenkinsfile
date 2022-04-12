@@ -37,7 +37,7 @@ pipeline {
         script {
           pom = readMavenPom file: "pom.xml"
           filesByGlob = findFiles(glob: "target/*.${pom.packaging}")
-          echo """${filesByGlob[0].name} ${filesByGlob[0].path} ${filesByGlob[0].directory} ${filesByGlob[0].length} ${filesByGlob[0].lastModified}"""
+          echo "${filesByGlob}"
           echo "spacer"
           }
         }
