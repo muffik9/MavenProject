@@ -35,6 +35,8 @@ pipeline {
     stage('Push to Nexus OSS') {
       steps {
         script {
+          pom = readMavenPom file: "pom.xml"
+          filesByGlob = findFiles(glob: "target/*.${pom.packaging}")
           artifactId = readMavenPom().getArtifactId()
           version = readMavenPom().getVersion()
           groupId = readMavenPom().getGroupId()
