@@ -36,8 +36,11 @@ pipeline {
       steps {
         script {
           pom = readMavenPom file: "pom.xml"
-          filesByGlob = findFiles(glob: "target/*.${pom.packaging}")
-          echo "${filesByGlob}"
+          filesByGlob = findFiles(glob: "server/target/*.${pom.packaging}")
+          echo "This is echo for variable ${filesByGlob}"
+          echo "This is to see if there is anything here:"
+          ls server/target
+          ls webapp/target
           echo "spacer"
           }
         }
