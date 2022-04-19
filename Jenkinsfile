@@ -41,6 +41,8 @@ pipeline {
           echo "This is to see if there is anything here:"
           ls server/target
           ls webapp/target
+          testinglocation = pwd
+          echo "$testinglocation"
           echo "spacer"
           }
         }
